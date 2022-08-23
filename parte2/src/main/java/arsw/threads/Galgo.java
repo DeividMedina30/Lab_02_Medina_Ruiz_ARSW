@@ -21,8 +21,8 @@ public class Galgo extends Thread {
 
 	public void corra() throws InterruptedException {
 		while (paso < carril.size()) {		
-			//this.vel= RandomGenerator.nextInt(200);
-			Thread.sleep(100);
+			this.vel= RandomGenerator.nextInt(200);
+			Thread.sleep(vel);
 			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
 			

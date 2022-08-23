@@ -52,11 +52,6 @@ public class MainCanodromo {
                             }
                         };
                         carrera.start();
-                        /*try {
-                            carrera.join();
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }*/
 
                     }
                 }
