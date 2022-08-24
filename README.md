@@ -12,11 +12,37 @@ Creación, puesta en marcha y coordinación de hilos.
 
 1. Revise el programa “primos concurrentes” (en la carpeta parte1), dispuesto en el paquete edu.eci.arsw.primefinder. Este es un programa que calcula los números primos entre dos intervalos, distribuyendo la búsqueda de los mismos entre hilos independientes. Por ahora, tiene un único hilo de ejecución que busca los primos entre 0 y 30.000.000. Ejecútelo, abra el administrador de procesos del sistema operativo, y verifique cuantos núcleos son usados por el mismo.
 
+Rta//
+
+Como podemos ver al momento de ejecutar con un solo hilo. Vemos como solo es usado un nucleo el cual trabaja
+a una capacidad bastante elevada.
+
+![](./img/ParteUno/PuntoUno.PNG)
+
+![](./img/ParteUno/PuntoUno2.PNG)
+
+
+
 2. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
+
+Rta//
+
+Como observamos al momento de ejecutarlo el nucleo del pc, sube y baja bastante, ya que se está realizando
+las tareas en diferentes hilos.
+
+![](./img/ParteUno/PuntoDos.PNG)
+
+![](./img/ParteUno/PuntoDos2.PNG)
+
+![](./img/ParteUno/PuntoDos3.PNG)
 
 3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
 
+Rta//
 
+![](./img/ParteUno/PuntoTres.PNG)
+
+![](./img/ParteUno/PuntoTres2.PNG)
 
 ##### Parte II 
 
@@ -46,22 +72,48 @@ Taller.
 
     b.  Puede utilizarse el método join() de la clase Thread para sincronizar el hilo que inicia la carrera, con la finalización de los hilos de los galgos.
 
-2.  Una vez corregido el problema inicial, corra la aplicación varias
+Rta//
+
+![](./img/ParteDos/PuntoUno.PNG)
+
+![](./img/ParteDos/PuntoUno2.PNG)
+
+2. Una vez corregido el problema inicial, corra la aplicación varias
     veces, e identifique las inconsistencias en los resultados de las
     mismas viendo el ‘ranking’ mostrado en consola (algunas veces
     podrían salir resultados válidos, pero en otros se pueden presentar
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
 
-3.  Utilice un mecanismo de sincronización para garantizar que a dichas
+Rta//
+
+Como podemos ver una de las inconsistencias es que más de un galgo llega a la misma posición o
+se esta imprimiendo en desorden el resultado.
+
+![](./img/ParteDos/PuntoDos.PNG)
+
+![](./img/ParteDos/PuntoDos2.PNG)
+
+
+
+3. Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
 
-4.  Implemente las funcionalidades de pausa y continuar. Con estas,
+Rta//
+
+![](./img/ParteDos/PuntoDos3.PNG)
+
+4. Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
 
+Rta//
+
+![](./img/ParteDos/PuntoCuatro.PNG)
+
+![](./img/ParteDos/PuntoCuatro2.PNG)
 
 ## Criterios de evaluación
 
