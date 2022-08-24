@@ -24,12 +24,12 @@ public class MainCanodromo {
 
                     @Override
                     public void actionPerformed(final ActionEvent e) {
-						//como acción, se crea un nuevo hilo que cree los hilos
+                        //como acción, se crea un nuevo hilo que cree los hilos
                         //'galgos', los pone a correr, y luego muestra los resultados.
                         //La acción del botón se realiza en un hilo aparte para evitar
                         //bloquear la interfaz gráfica.
                         ((JButton) e.getSource()).setEnabled(false);
-                        Thread carrera = new Thread() {
+                        new Thread() {
                             public void run() {
                                 for (int i = 0; i < can.getNumCarriles(); i++) {
                                     //crea los hilos 'galgos'
@@ -41,17 +41,15 @@ public class MainCanodromo {
                                 for (int i = 0; i < can.getNumCarriles(); i++) {
                                     try {
                                         galgos[i].join();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                                    } catch (InterruptedException ex) {
+                                        ex.printStackTrace();
                                     }
-
                                 }
-                               
-				                can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1); 
-                                System.out.println("El ganador fue: " + reg.getGanador());
+
+                                can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1);
+                                System.out.println("El ganador fue:" + reg.getGanador());
                             }
-                        };
-                        carrera.start();
+                        }.start();
 
                     }
                 }
