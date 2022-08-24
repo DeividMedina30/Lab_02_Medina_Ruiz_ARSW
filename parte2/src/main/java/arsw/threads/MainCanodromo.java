@@ -13,6 +13,10 @@ public class MainCanodromo {
 
     private static RegistroLlegada reg = new RegistroLlegada();
 
+    private static void detenerGalgos(){
+
+    }
+
     public static void main(String[] args) {
         can = new Canodromo(17, 100);
         galgos = new Galgo[can.getNumCarriles()];
@@ -36,7 +40,6 @@ public class MainCanodromo {
                                     galgos[i] = new Galgo(can.getCarril(i), "" + i, reg);
                                     //inicia los hilos
                                     galgos[i].start();
-
                                 }
                                 for (int i = 0; i < can.getNumCarriles(); i++) {
                                     try {
@@ -45,9 +48,8 @@ public class MainCanodromo {
                                         ex.printStackTrace();
                                     }
                                 }
-
                                 can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1);
-                                System.out.println("El ganador fue: " + reg.getGanador());
+                                System.out.println("El ganador fue:" + reg.getGanador());
                             }
                         }.start();
 
@@ -59,8 +61,11 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        detenerGalgos();
+                        for(int i = 0; i < can.getNumCarriles(); i++){
+                            galgos[i].detenerGalgos();
+                        }
                         System.out.println("Carrera pausada!");
-                        pausarHilos();
                     }
                 }
         );
@@ -69,24 +74,14 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        for(int i = 0; i < can.getNumCarriles(); i++){
+                            galgos[i].reanudarGalgos();
+                        }
                         System.out.println("Carrera reanudada!");
-                        reanudarHilos();
                     }
                 }
         );
 
-    }
-
-    public static void pausarHilos(){
-        for (Galgo i : galgos){
-            i.suspenderHilo();
-        }
-    }
-
-    public static void reanudarHilos(){
-        for (Galgo i : galgos){
-            i.reanudarHilo();
-        }
     }
 
 }
