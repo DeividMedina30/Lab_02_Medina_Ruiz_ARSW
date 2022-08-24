@@ -22,6 +22,10 @@ public class Galgo extends Thread {
 
 	}
 
+	/**
+	 * Método que permite hacer que cada galgo avance
+	 * @throws InterruptedException
+	 */
 	public void corra() throws InterruptedException {
 		while (paso < carril.size()) {
 			if (detenerse){
@@ -47,10 +51,16 @@ public class Galgo extends Thread {
 		}
 	}
 
+	/**
+	 * Método que me permite detener los galgos.
+	 */
 	synchronized void detenerGalgos(){
 		this.detenerse = true;
 	}
 
+	/**
+	 * Método que me permite reanudar los galgos.
+	 */
 	synchronized void reanudarGalgos(){
 		this.detenerse = false;
 		notifyAll();

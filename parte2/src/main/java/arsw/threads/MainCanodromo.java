@@ -13,15 +13,29 @@ public class MainCanodromo {
 
     private static RegistroLlegada reg = new RegistroLlegada();
 
+    /**
+     * Método que me detiene los galgos.
+     */
     private static void detenerGalgos(){
-
+        for(int i = 0; i < can.getNumCarriles(); i++){
+            galgos[i].detenerGalgos();
+        }
     }
+
+    /**
+     * Método que me reanuda los galgos.
+     */
+    private static void reanudarGalgos(){
+        for(int i = 0; i < can.getNumCarriles(); i++){
+            galgos[i].reanudarGalgos();
+        }
+    }
+
 
     public static void main(String[] args) {
         can = new Canodromo(17, 100);
         galgos = new Galgo[can.getNumCarriles()];
         can.setVisible(true);
-
         //Acción del botón start
         can.setStartAction(
                 new ActionListener() {
@@ -62,9 +76,6 @@ public class MainCanodromo {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         detenerGalgos();
-                        for(int i = 0; i < can.getNumCarriles(); i++){
-                            galgos[i].detenerGalgos();
-                        }
                         System.out.println("Carrera pausada!");
                     }
                 }
@@ -74,9 +85,7 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        for(int i = 0; i < can.getNumCarriles(); i++){
-                            galgos[i].reanudarGalgos();
-                        }
+                        reanudarGalgos();
                         System.out.println("Carrera reanudada!");
                     }
                 }
