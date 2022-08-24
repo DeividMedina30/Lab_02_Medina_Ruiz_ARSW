@@ -11,20 +11,32 @@ public class Galgo extends Thread {
 	private Carril carril;
 	RegistroLlegada regl;
 	int vel;
+	private boolean suspender;
 
 	public Galgo(Carril carril, String name, RegistroLlegada reg) {
 		super(name);
 		this.carril = carril;
 		paso = 0;
 		this.regl=reg;
+		suspender= false;
 	}
 
 	public void corra() throws InterruptedException {
 
 		while (paso < carril.size()) {
-			Thread.sleep(100);
+			this.vel = RandomGenerator.nextInt(100);
+			Thread.sleep(vel);
 			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
+			synchronized (this){
+				while(suspender){
+					try {
+						wait();
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
+				}
+			}
 			if (paso == carril.size()) {
 				carril.finish();
 				synchronized (regl) {
@@ -42,13 +54,20 @@ public class Galgo extends Thread {
 
 	@Override
 	public void run() {
-		
 		try {
 			corra();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public void suspenderHilo(){
+		suspender = true;
+	}
+
+	public void reanudarHilo() {
+		suspender= false;
+		notify();
 	}
 
 }

@@ -20,10 +20,11 @@ public class Main {
     }
 
     private static void esperarPulsacionEnterUsuario(){
-        Scanner t = new Scanner(System.in);
-        String enterkey = t.nextLine();
-        while (!enterkey.isEmpty()  ) {
-            esperarPulsacionEnterUsuario();
+        try (Scanner t = new Scanner(System.in)) {
+            String enterkey = t.nextLine();
+            while (!enterkey.isEmpty()  ) {
+                esperarPulsacionEnterUsuario();
+            }
         }
         pft1.renaudarhilo();
         pft2.renaudarhilo();
