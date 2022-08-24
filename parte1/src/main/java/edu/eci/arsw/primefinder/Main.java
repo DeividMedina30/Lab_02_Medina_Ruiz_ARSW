@@ -10,6 +10,12 @@ public class Main {
     private static PrimeFinderThread pft2;
     private static PrimeFinderThread pft3;
 
+    /**
+     * Método que me permite iniciar los hilos
+     * @param a1 - División de n / 3
+     * @param a2 - Division de N/ 3 + a1
+     * @param n - Número hasta donde se va a revisar.
+     */
     private static void arrancarHilos(int a1, int a2, int n){
         pft1 = new PrimeFinderThread(0, a1);
         pft2 = new PrimeFinderThread(a1 + 1, a2);
@@ -19,6 +25,9 @@ public class Main {
         pft3.start();
     }
 
+    /**
+     * Método que me permite esperar que el usuario digite enter para iniciar de nuevo.
+     */
     private static void esperarPulsacionEnterUsuario(){
         try (Scanner t = new Scanner(System.in)) {
             String enterkey = t.nextLine();
@@ -26,11 +35,14 @@ public class Main {
                 esperarPulsacionEnterUsuario();
             }
         }
-        pft1.renaudarhilo();
-        pft2.renaudarhilo();
-        pft3.renaudarhilo();
+        pft1.reanudarhilo();
+        pft2.reanudarhilo();
+        pft3.reanudarhilo();
     }
 
+    /**
+     * Método que me permite pausar los hilos.
+     */
     private static void pausarHilos(){
         pft1.suspenderhilo();
         pft2.suspenderhilo();

@@ -19,6 +19,7 @@ public class PrimeFinderThread extends Thread{
         this.b = b;
     }
 
+    @Override
     public void run(){
         for (int i=a;i<=b;i++){
             if (isPrime(i) && i != 1){
@@ -50,11 +51,17 @@ public class PrimeFinderThread extends Thread{
         return primes;
     }
 
+    /**
+     * Método que me permite suspender los hilos.
+     */
     synchronized void suspenderhilo(){
         suspender=true;
     }
 
-    synchronized void renaudarhilo(){
+    /**
+     * Método que me permite reanudar los Hilos.
+     */
+    synchronized void reanudarhilo(){
         suspender=false;
         notify();
     }
